@@ -94,22 +94,22 @@ Resources:
         SubnetIds:
           - !Ref SUBNETID
       Events:
-        GetDonors:
+        GetFiles:
           Type: Api
           Properties:
-            Path: /donors
+            Path: /files
             Method: get
             RestApiId: !Ref NGOAPIGateway
-        CreateDonor:
+        CreateFile:
           Type: Api
           Properties:
-            Path: /donors
+            Path: /files
             Method: post
             RestApiId: !Ref NGOAPIGateway
-        GetDonor:
+        GetFile:
           Type: Api
           Properties:
-            Path: /donors/{donorUserName}
+            Path: /files/{fileName}
             Method: get
             RestApiId: !Ref NGOAPIGateway
   SecretsManagerVPCE:
@@ -134,7 +134,7 @@ Resources:
           version: "2019-11-13T11:12:00Z"
           title: "Non Profit Blockchain"
         paths:
-          /donors:
+          /files:
             get:
               consumes:
               - "application/json"
@@ -153,7 +153,7 @@ Resources:
                     statusCode: "200"
                 requestTemplates:
                   application/json: "{\n  \"functionType\": \"queryObject\",\n  \"chaincodeFunction\"\
-                    : \"queryAllDonors\",\n  \"chaincodeFunctionArgs\": {},\n  \"fabricUsername\"\
+                    : \"queryAllFileRecords\",\n  \"chaincodeFunctionArgs\": {},\n  \"fabricUsername\"\
                     : \"lambdaUser20\"\n}"
                 passthroughBehavior: "when_no_templates"
                 httpMethod: "POST"
@@ -177,22 +177,22 @@ Resources:
                     statusCode: "200"
                 requestTemplates:
                   application/json: "{\n  \"functionType\": \"invoke\",\n  \"chaincodeFunction\"\
-                    : \"createDonor\",\n  \"chaincodeFunctionArgs\": {\n      #set( $body\
-                    \ = $util.parseJson($input.body) )\n      \"donorUserName\": \"$body.donorUserName\"\
-                    ,\n      \"email\": \"$body.email\",\n      \"registeredDate\":\"$context.requestTime\"\
+                    : \"createFileRecord\",\n  \"chaincodeFunctionArgs\": {\n      #set( $body\
+                    \ = $util.parseJson($input.body) )\n      \"fileName\": \"$body.fileName\"\
+                    ,\n      \"hash\": \"$body.hash\",\n      \"registeredDate\":\"$context.requestTime\"\
                     \n  },\n  \"fabricUsername\": \"lambdaUser20\"\n}"
                 passthroughBehavior: "when_no_templates"
                 httpMethod: "POST"
                 contentHandling: "CONVERT_TO_TEXT"
                 type: "aws"
-          /donors/{donorUserName}:
+          /files/{fileName}:
             get:
               consumes:
               - "application/json"
               produces:
               - "application/json"
               parameters:
-              - name: "donorUserName"
+              - name: "fileName"
                 in: "path"
                 required: true
                 type: "string"
@@ -209,8 +209,8 @@ Resources:
                     statusCode: "200"
                 requestTemplates:
                   application/json: "{\n  \"functionType\": \"queryObject\",\n  \"chaincodeFunction\"\
-                    : \"queryDonor\",\n  \"chaincodeFunctionArgs\": {\n      \"donorUserName\"\
-                    : \"$input.params('donorUserName')\"\n  },\n  \"fabricUsername\": \"lambdaUser20\"\
+                    : \"queryFileRecord\",\n  \"chaincodeFunctionArgs\": {\n      \"fileName\"\
+                    : \"$input.params('fileName')\"\n  },\n  \"fabricUsername\": \"lambdaUser20\"\
                     \n}"
                 passthroughBehavior: "when_no_templates"
                 httpMethod: "POST"
