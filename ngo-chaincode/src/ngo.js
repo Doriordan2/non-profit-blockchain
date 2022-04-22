@@ -200,7 +200,7 @@ let Chaincode = class {
    * @param {*} args - JSON as follows:
    * {
    *    "fileName":"edge",
-   *    "hash":"edge@abc.com",
+   *    "hash":"1gshdjshsjs4736hffhg",
    *    "registeredDate":"2018-10-22T11:52:20.182Z"
    * }
    */

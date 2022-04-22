@@ -94,19 +94,19 @@ Resources:
         SubnetIds:
           - !Ref SUBNETID
       Events:
-        GetFiles:
+        GetAllFileRecords:
           Type: Api
           Properties:
             Path: /files
             Method: get
             RestApiId: !Ref NGOAPIGateway
-        CreateFile:
+        CreateFileRecord:
           Type: Api
           Properties:
             Path: /files
             Method: post
             RestApiId: !Ref NGOAPIGateway
-        GetFile:
+        GetFileRecord:
           Type: Api
           Properties:
             Path: /files/{fileName}
