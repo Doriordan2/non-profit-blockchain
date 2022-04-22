@@ -154,7 +154,7 @@ Resources:
                 requestTemplates:
                   application/json: "{\n  \"functionType\": \"queryObject\",\n  \"chaincodeFunction\"\
                     : \"queryAllFileRecords\",\n  \"chaincodeFunctionArgs\": {},\n  \"fabricUsername\"\
-                    : \"lambdaUser20\"\n}"
+                    : \"lambdaUser21\"\n}"
                 passthroughBehavior: "when_no_templates"
                 httpMethod: "POST"
                 contentHandling: "CONVERT_TO_TEXT"
@@ -180,7 +180,7 @@ Resources:
                     : \"createFileRecord\",\n  \"chaincodeFunctionArgs\": {\n      #set( $body\
                     \ = $util.parseJson($input.body) )\n      \"fileName\": \"$body.fileName\"\
                     ,\n      \"hash\": \"$body.hash\",\n      \"registeredDate\":\"$context.requestTime\"\
-                    \n  },\n  \"fabricUsername\": \"lambdaUser20\"\n}"
+                    \n  },\n  \"fabricUsername\": \"lambdaUser21\"\n}"
                 passthroughBehavior: "when_no_templates"
                 httpMethod: "POST"
                 contentHandling: "CONVERT_TO_TEXT"
@@ -210,7 +210,7 @@ Resources:
                 requestTemplates:
                   application/json: "{\n  \"functionType\": \"queryObject\",\n  \"chaincodeFunction\"\
                     : \"queryFileRecord\",\n  \"chaincodeFunctionArgs\": {\n      \"fileName\"\
-                    : \"$input.params('fileName')\"\n  },\n  \"fabricUsername\": \"lambdaUser20\"\
+                    : \"$input.params('fileName')\"\n  },\n  \"fabricUsername\": \"lambdaUser21\"\
                     \n}"
                 passthroughBehavior: "when_no_templates"
                 httpMethod: "POST"
