@@ -226,7 +226,7 @@ let Chaincode = class {
   }
 
   /**
-   * Retrieves a specfic file
+   * Retrieves a specific file
    * 
    * @param {*} stub 
    * @param {*} args 
